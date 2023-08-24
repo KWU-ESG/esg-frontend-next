@@ -43,7 +43,7 @@ export const InputWrapper = styled.div`
 
 export const Subject = styled.input`
   width: 996px;
-  height: 52px;
+  height: 40px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
 `;
