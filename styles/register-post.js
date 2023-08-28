@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.div`
   width: 1000px;
   /* height: 1847px; */
+  gap: 20px;
   border: 1px solid black;
   margin: 100px;
   padding-top: 80px;
@@ -18,8 +19,13 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.div`
-  font-size: 34px;
-  font-weight: bold;
+  font-family: Inter;
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  margin-bottom: 20px;
 `;
 
 export const WriterWrapper = styled.div`
@@ -35,30 +41,34 @@ export const Label = styled.div`
   padding-bottom: 16px;
   font-size: 16px;
   font-weight: 500;
+  margin-left: 5px;
 `;
 
 export const InputWrapper = styled.div`
-  padding-top: 40px;
+  padding-top: 10px;
 `;
 
 export const Subject = styled.input`
-  width: 996px;
+  width: 920px;
   height: 40px;
   padding-left: 16px;
-  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  border: 2px solid rgba(234, 234, 234, 1);
 `;
 
 export const Contents = styled.textarea`
-  width: 996px;
+  width: 920px;
   height: 480px;
   padding-left: 16px;
   padding: 14px;
-  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  border: 2px solid rgba(234, 234, 234, 1);
 `;
 
 export const ImageWrapper = styled.div`
   width: 996px;
   padding-top: 40px;
+  margin-left: 70px;
 `;
 
 export const UploadButton = styled.button`
@@ -74,10 +84,12 @@ export const UploadButton = styled.button`
 export const OptionWrapper = styled.div`
   width: 996px;
   padding-top: 40px;
+  margin-left: 70px;
 `;
 
 export const RadioButton = styled.input`
   cursor: pointer;
+  margin-left: 30px;
 `;
 
 export const RadioLabel = styled.label`
@@ -90,8 +102,10 @@ export const RadioLabel = styled.label`
 export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  -webkit-box-pack: center;
   padding-top: 80px;
+  justify-content: space-between;
+  padding-top: 10px;
 `;
 
 export const CancelButton = styled.button`
@@ -110,14 +124,22 @@ export const SubmitButton = styled.button`
   width: 179px;
   height: 52px;
   border: none;
-
-  font-size: 16px;
-  font-weight: 500;
-  margin-left: 12px;
+  line-height: 18px;
+  letter-spacing: 0.02em;
+  font-size: 19px;
+  font-weight: 900;
+  margin-left: 500px;
   margin-right: 12px;
-  cursor: pointer;
+  background-color: rgba(244, 128, 35, 1);
+  color: #fff;
+  border-radius: 15px;
+    
+`;
 
-  background-color: blue;
+export const CustomSubmitButton = styled(SubmitButton)`
+  margin-right: 20px; 
+  margin-left: 0px;
+  background-color: rgba(22, 130, 253, 1);
 `;
 
 export const Error = styled.div`
