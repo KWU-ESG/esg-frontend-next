@@ -18,3 +18,14 @@ export const InputStyle = styled.input`
     outline : none;
   }
 `;
+
+export const LoginBtn = styled.button`
+  width : 200px;
+  padding: 15px;
+  background-color: ${props => props.$log ? '#73BCFF' : '#BCDFFF'};
+  border : none;
+  border-radius : 50px;
+  color: ${props => props.$log ? 'white' : 'black'};
+  cursor: pointer;
+  transition: all 0.2s ease;
+`;

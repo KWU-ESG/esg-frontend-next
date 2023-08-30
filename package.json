@@ -26,5 +26,9 @@
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
     "swr": "^2.2.1"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "glob": "^10.3.3"
   }
 }

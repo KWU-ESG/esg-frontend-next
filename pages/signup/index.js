@@ -1,7 +1,7 @@
 import { Container, Form } from "react-bootstrap";
 import BtnLogin from '../../styles/btn-login-style'
 import { BoxStyle, InputStyle } from '../../styles/form-style'
-import axios from "axios";
+import {axios} from "axios";
 import { useState } from 'react';
 import Header from '../../components/layouts/Header';
 import Footer from '../../components/layouts/Footer';
@@ -10,8 +10,8 @@ import Footer from '../../components/layouts/Footer';
 export default function SignUpPage(props){
 
     const [email, setEmail] = useState("")
-    const [birth, setBirth] = useState("");
-    const [name, setName] = useState("");
+    const [birth, setBirth] = useState("")
+    const [name, setName] = useState("")
     const [nickname, setNickname] = useState("")
     const [password, setPassword] = useState("")
     
@@ -46,10 +46,9 @@ export default function SignUpPage(props){
     }
 
   // 입력한 값을 post로 전송함
-  // jsonplaceholder에 전송 성공까지만 확인됨
   
   /**
- * < SignIn >
+ * < SignUp >
  * Form.Group ( 이메일, 이름, 비밀번호, 비밀번호 확인 )
  */
   return(
