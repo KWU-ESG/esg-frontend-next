@@ -69,7 +69,7 @@ export default function BoardList(){
             <A href="#">Tags</A >
             </Nav>
     </Container>
-    <Container2>
+    <Container2> 
       <table>
         <thead>
           <tr>
