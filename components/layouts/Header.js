@@ -32,10 +32,10 @@ export default function Header(){
           <Navbar.Brand href="/">LOVESG</Navbar.Brand>          
           <Nav>
             <Nav.Link className='me-4' href="/home">HOME</Nav.Link>
-            <Nav.Link className='me-4' href="/esg">나의ESG</Nav.Link>
-            <Nav.Link className='me-4' href="/learning">ESG학습</Nav.Link>
-            <Nav.Link className='me-4' href="/community">포럼</Nav.Link>
-            <Nav.Link href="/introduce">LOVESG소개</Nav.Link>
+            <Nav.Link className='me-4' href="/news">나의ESG</Nav.Link>
+            <Nav.Link className='me-4' href="/esg/info">ESG학습</Nav.Link>
+            <Nav.Link className='me-4' href="/forum">포럼</Nav.Link>
+            <Nav.Link href="/developer">LOVESG소개</Nav.Link>
           </Nav>
           <LoginBox onClick={onClickMove}>로그인</LoginBox>          
         </Container>

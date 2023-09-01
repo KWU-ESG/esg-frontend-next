@@ -1,10 +1,9 @@
 import styled from '@emotion/styled'
-import banner from '../../public/images/banner.png';
 
 // 배너 이미지
 const BannerImg = styled.div`
   height : 356px;
-  background-image : url(${banner});
+  background-image : url('/images/banner.png');
   background-size : cover;
   background-position : center;
   background-repeat : no-repeat;
@@ -28,7 +27,7 @@ const BannerTitle = styled.div`
 `;
 
 // Banner
-export default function Banner(props){
+export default function Banner(){
   return(
     <BannerImg>
       <BannerTitle>

@@ -1,97 +1,105 @@
-import { useMutation, gql} from '@apollo/client'
-import { axios } from 'axios'
-import { useState } from 'react';
+//import {EmailBtn,EmailInput} from '../../styles/login-style'
+import { useRouter } from 'next/router';
 import { Container, Form } from "react-bootstrap";
+//import BtnLogin from '../../styles/btn-login-style';
+import { BoxStyle, InputStyle } from '../../styles/form-style';
+import { useState } from 'react';
+import axios from "axios";
 import Header from '../../components/layouts/Header';
 import Footer from '../../components/layouts/Footer';
-import { BoxStyle, InputStyle, LoginBtn } from '../../styles/form-style'
 
-const mygql = gql`
-    mutation createBoard($writer: String, $title: String, $contents: String) {
-        createBoard(writer: $writer, title: $title, contents: $contents){
-            _id
-            number
-            message
-        }
+function Validation(values) {
+    const errors = {};
+
+    if (!values.email) {
+        errors.email = "이메일을 입력해주세요";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+        errors.email = "유효한 이메일 형식이 아닙니다";
     }
-`
+
+    if (!values.password) {
+        errors.password = "비밀번호를 입력해주세요";
+    } else if (values.password.length < 2) {
+        errors.password = "비밀번호는 최소 2글자 이상이어야 합니다";
+    }
+
+    return errors;
+}
+
 
 export default function LoginPage(){
-    //const[함수] = useMutation(mygql)
+    const [values, setValues] = useState({
+        email: '',
+        password: ''
+    });
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [emailError, setEmailError] = useState("");
+    const router = useRouter();
 
-    function onChangeEmail(event) {
-        setEmail(event.target.value)
-    }
-    function onChangePassword(event) {
-        setPassword(event.target.value)
-    }
+    const [errors, setErrors] = useState({});
+
+    const handleInput = (event) => {
+        const { name, value } = event.target;
+        console.log('Input changed:', name, value);
+        setValues((prev) => ({ ...prev, [name]: value }));
+      };
+      
+      const handleSubmit = async (event) => {
+        event.preventDefault();
+        const validationErrors = Validation(values);
+        setErrors(validationErrors);
     
-    //const result = axios.get("")
-    const onClickLogin = async () => {
-        // const res = await 함수({
-        //     variables : {
-        //         writer: "채채",
-        //         title: "제목",
-        //         contents: "테스트"
-        //     }
-        // })
-        // console.log(res)
-
-        //1. 검증하기
-        if (email.includes("@") === false){
-            setEmailError('이메일에 @가 없습니다.')
-        } 
-        
-        if (email && password) {
-        //2. 백엔드에게 전송하기
-        const user = {
-            email: email,
-            username: password
-          }
-  
-          await axios.post("https://koreanjson.com/todos", user);
-        //3. 성공 알람 보여주기
-        console.log(user.email)
+        console.log('Entered:', values);
+        if (!validationErrors.email && !validationErrors.password) {
+            try {
+                const res = await axios.post('http://localhost:8081/login', values);
+                console.log('Got:', res.data);
+                if (res.data === "Success") { // backend에서 보낸 Success 확인
+                    router.push('/');
+                } else {
+                    alert("등록된 계정이 없습니다");
+                }
+            } catch (err) {
+                console.log(err);
+            }
         }
+    } 
 
-    }
-
-
-    return (
+    return(
         <>
-        <Header/>
-
+        <Header />
         <Container className="w-50 my-5 py-5" style={{maxWidth : "600px"}}>
-        <Form className="d-flex-column">
+        <Form className="d-flex-column" onSubmit={handleSubmit}>
+    
         <Form.Group className="mb-4" controlId="formEmail">
         <Form.Label>이메일 주소</Form.Label>
         <BoxStyle>
-        <InputStyle type="email" placeholder="Enter your Email Address" 
-        onChange={onChangeEmail}/>
-        <div>{emailError}</div>
-        {/* <div id = 'myerror'></div>  옛날 방식 */}
+        <InputStyle type="email" placeholder="Enter your Email Address" name='email' onChange={handleInput}/>
         </BoxStyle>
         </Form.Group> 
-
+    
         <Form.Group className="mb-4" controlId="formPassword">
         <Form.Label>비밀번호</Form.Label>
         <BoxStyle>
-        <InputStyle type="password" placeholder="Enter Your Password"
-        onChange={onChangePassword} />
+        <InputStyle type="password" placeholder="Enter Your Password" name='password' onChange={handleInput}/>
         <i className="fa-solid fa-eye-slash"></i>
         </BoxStyle>
         </Form.Group>
-
-        <LoginBtn onClick={onClickLogin}>로그인</LoginBtn>
+    
+        <button type="submit" className="float-clear">로그인 하기</button>
         </Form>
         </Container>
-
-        <Footer/>
+        <Footer />
         </>
-
+      )
+    };
+    
+    /*
+    return (
+        <div>
+            <EmailBtn>이메일:</EmailBtn>
+            <EmailInput type="text"/>
+            <button>클릭하세요</button>
+            <img src="next.svg"/>
+        </div>
     )
-}
+}*/
