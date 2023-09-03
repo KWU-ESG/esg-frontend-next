@@ -18,11 +18,15 @@ import {
 } from "../../../styles/sidebar-style";
 
 export default function BoardList(){
+
+  const router = useRouter()
+
   const [boardList, setBoardList] = useState([{
-    idx: '',
+    id: 0,
     title: '',
     content: '',
 }]);
+
 
   // 글 리스트의 갯수를 세기 위해 선언, 기본값 0
   const [lastIdx, setLastIdx] = useState(0)
@@ -37,23 +41,25 @@ export default function BoardList(){
       // 받아온 데이터로 다음 작업을 진행하기 위해 await 로 대기
       // 받아온 데이터를 map 해주어 rowData 별로 _inputData 선언
       const _inputData = await res.data.map((rowData) => (
-                // rowData 의 갯수만큼 증가
-                setLastIdx(lastIdx+1),
-                {
-                    idx: rowData.idx,
-                    title: rowData.title,
-                    content: rowData.content,
-                })
+              {
+                  id: rowData.id,
+                  title: rowData.title,
+                  content: rowData.content,
+              })
       )
       // 선언된 _inputData 를 최초 선언한 boardList에 concat으로 추가
       setBoardList(boardList.concat(_inputData))
       console.log("게시글 목록 받아오기 성공")
-      console.log('받아온 boardList 출력 :: ', boardList)
+      console.log('받아온 boardList 출력 :: ', boardList[1])
     } catch(e){
       console.error(e.message)
     }
   },[])
 
+  const onClickMoveDetail = (id) => {
+    router.push(`/forum/forum-list/${id}`)
+    console.log(`/forum/forum-list/${id}`)
+  }
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -75,26 +81,26 @@ export default function BoardList(){
       </Nav>
     </Container>
     <Container2> 
-      <table>
-        <thead>
-          <tr>
-            <th>번호</th>
-            <th>제목</th>
-          </tr>
-        </thead>
-        <tbody>
         {currentPosts.map((board,idx) => (
-          <tr key={idx}>
-          <td>{idx}</td>
-          <td>{board.title}</td>
-          </tr>
+          <div key={idx}>
+          <div>{idx}</div>
+          <div>{board.title}</div>
+          </div>
         ))}
-      </tbody>
-      </table>
+      
+    {/* 게시글 상세보기 링크 띄우고 이동 */}
+    {currentPosts?.map((post)=> (
+        <div onClick={() => onClickMoveDetail(post.id)} key={post.id}>
+        <h4><Link href={`/forum/forum-list/${post.id}`}><a>{post.title}</a></Link></h4>
+      </div>
+    ))}
+    
       <Pagination postsPerPage={postsPerPage} 
       totalPosts={boardList.length} currentPage={currentPage} 
       paginate={paginate}></Pagination>
     </Container2>
+
+
     <Footer/>
     </>
 
