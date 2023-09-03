@@ -10,6 +10,10 @@ import {
   Container2,
   Nav,
   NavTitle,
+  IconWrapper,
+  MenuPath,
+  IconPath,
+  TagPath,
   A
 } from "../../../styles/sidebar-style";
 
@@ -56,18 +60,19 @@ export default function BoardList(){
   const currentPosts = boardList.slice(indexOfFirstPost, indexOfLastPost);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+
   return (
     <>
-    <Header/>
+    <Header />
     <Container>
-            <Nav>
-            <NavTitle>MENU</NavTitle>
-            <A href="#">Questions</A>
-            <A href="#">E (Environment)</A >
-            <A href="#">S (Social)</A >
-            <A href="#">G (Governance)</A >
-            <A href="#">Tags</A >
-            </Nav>
+      <Nav>
+        <NavTitle>MENU</NavTitle>
+        <A href="#"><IconWrapper>{MenuPath} Questions</IconWrapper></A>
+        <A href="#"><IconWrapper>{IconPath} E (Environment)</IconWrapper></A>
+        <A href="#"><IconWrapper>{IconPath} S (Social)</IconWrapper></A>
+        <A href="#"><IconWrapper>{IconPath} G (Governance)</IconWrapper></A>
+        <A href="#"><IconWrapper>{TagPath} Tags</IconWrapper></A>
+      </Nav>
     </Container>
     <Container2> 
       <table>

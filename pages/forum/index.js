@@ -21,8 +21,13 @@ import {
     Container2,
     Nav,
     NavTitle,
+    IconWrapper,
+    MenuPath,
+    IconPath,
+    TagPath,
     A
   } from "../../styles/sidebar-style";
+  
 
 import {useState} from 'react';
 import axios from "axios";
@@ -40,14 +45,15 @@ export default function forum(){
         <>
         <Header/>
         <Container>
-            <Nav>
-            <NavTitle>MENU</NavTitle>
-            <A href="#">Questions</A>
-            <A href="#">E (Environment)</A >
-            <A href="#">S (Social)</A >
-            <A href="#">G (Governance)</A >
-            <A href="#">Tags</A >
-            </Nav>
+        <Nav>
+          <NavTitle>MENU</NavTitle>
+          <A href="#"><IconWrapper>{MenuPath} Questions</IconWrapper></A>
+          <A href="#"><IconWrapper>{IconPath} E (Environment)</IconWrapper></A>
+          <A href="#"><IconWrapper>{IconPath} S (Social)</IconWrapper></A>
+          <A href="#"><IconWrapper>{IconPath} G (Governance)</IconWrapper></A>
+          <A href="#"><IconWrapper>{TagPath} Tags</IconWrapper></A>
+        </Nav>
+    
         
         {/*<div style={{ display: 'flex' }}>
           {/* 네비게이션 바 
