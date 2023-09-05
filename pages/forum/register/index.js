@@ -19,8 +19,11 @@ import {useState} from 'react';
 import axios from "axios";
 import Header from '../../../components/layouts/Header';
 import Footer from '../../../components/layouts/Footer';
+import { useRouter } from "next/router";
 
   export default function RegisterPage() {
+    const router = useRouter()
+
     // state와 state를 변경하는 함수 선언
     const [title, setTitle] = useState("");
     const [contents, setContents] = useState("");
@@ -30,6 +33,7 @@ import Footer from '../../../components/layouts/Footer';
     // error state
     const [titleError, setTitleError] = useState("");
     const [contentsError, setContentsError] = useState("");
+    const [categoryError, setCategoryError] = useState("");
 
     const onChangeTitle = (event) => {
       setTitle(event.target.value);
@@ -40,6 +44,9 @@ import Footer from '../../../components/layouts/Footer';
 
     const onChangeCategory = (event) => {
       setCategory(event.target.value);
+      if(event.target.value !== ""){
+        setCategoryError("")
+      }
     };
   
     // 이벤트 핸들러 함수
@@ -60,22 +67,33 @@ import Footer from '../../../components/layouts/Footer';
         setContentsError("내용을 입력해주세요.");
       }
       if (title && contents) {
-        const postData = {
+        try {
+          const postData = {
+          writer: "임시지은이",
+          password: "1234",
           title: title,
           content: contents
+          }
           // category: category 선택한 카테고리
+
+          console.log("성공시 제목 출력: ",postData.title)
+          await axios.post("http://backend-example.codebootcamp.co.kr/board", postData);
+          alert("게시글이 등록되었습니다.");
+          router.push('/forum/forum-list')
+          
+        }
+        catch(error) {
+          console.log("등록 에러 발생")
+          console.error(error);
         }
 
-        await axios.post("https://koreanjson.com/todos", postData);
-        alert(postData.title)
-        alert(postData.content)
-        alert("게시글이 등록되었습니다.");
+
       }
     };
 
     return (
       <>
-            <Header/>
+      <Header/>
       <Wrapper>
       <InputWrapper>
           <Title>게시글 등록</Title>
@@ -96,7 +114,7 @@ import Footer from '../../../components/layouts/Footer';
             <option value="G">G</option>
             <option value="기타">기타</option>
           </select>
-          <Error>{titleError}</Error>
+          {/* <Error>{titleError}</Error> */}
         </InputWrapper>
 
         <InputWrapper>
@@ -110,32 +128,6 @@ import Footer from '../../../components/layouts/Footer';
           <Contents placeholder="질문 혹은 나누고 싶은 게시글 내용을 입력하세요" onChange={onChangeContents}/>
           <Error>{contentsError}</Error>
         </InputWrapper>
-
-        <InputWrapper>
-          <Subject type="text" placeholder="태그를 입력하세요" onChange={onChangeTitle}/>
-          <Error>{titleError}</Error>
-       </InputWrapper>
-
-       {/*
-
-        <ImageWrapper>
-          <Label>이미지 추가</Label>
-          <UploadButton>+</UploadButton>
-          <UploadButton>+</UploadButton>
-          <UploadButton>+</UploadButton>
-        </ImageWrapper>
-
-        <OptionWrapper>
-          <Label>태그선택</Label>
-          <RadioButton type="radio" id="youtube" name="radio-button" />
-          <RadioLabel htmlFor="youtube">E</RadioLabel>
-          <RadioButton type="radio" id="image" name="radio-button" />
-          <RadioLabel htmlFor="image">S</RadioLabel>
-          <RadioButton type="radio" id="image" name="radio-button" />
-          <RadioLabel htmlFor="image">G</RadioLabel>
-        </OptionWrapper>
-
-          */}
 
       <ButtonWrapper>
         <CustomSubmitButton onClick={onClickSubmit}>🖼 이미지 추가</CustomSubmitButton>

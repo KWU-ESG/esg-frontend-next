@@ -2255,6 +2255,11 @@ p-locate@^6.0.0:
   dependencies:
     p-limit "^4.0.0"
 
+p-sleep@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/p-sleep/-/p-sleep-1.1.0.tgz#a6c9333059b5103c3c0e46bcbba95a1f7969095b"
+  integrity sha512-bwP3GKZirBUYMtiUuBrheLUQdRXVeE/pmHOaLpNJzNfAD4b5AjDn6l823brXcQFade4G/g7GMNQ3KV86E8EaEw==
+
 pac-proxy-agent@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/pac-proxy-agent/-/pac-proxy-agent-5.0.0.tgz#b718f76475a6a5415c2efbe256c1c971c84f635e"
@@ -2487,6 +2492,13 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-tinder-card@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/react-tinder-card/-/react-tinder-card-1.6.2.tgz#d7ea67691973293ed9e3687fc2763003389c7baa"
+  integrity sha512-jtdgINFQ4bNA7YoqnoS4Z603mYCtrRHVc+K4R6JHuUzjsRsgO7hEooCUXz++HF5WE+fkOHjkuc22w+rxUlkMJw==
+  dependencies:
+    p-sleep "^1.1.0"
 
 react-transition-group@^4.4.5:
   version "4.4.5"
