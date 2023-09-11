@@ -1,10 +1,9 @@
-# esg-frontend-next
-
+# 🗃 esg-frontend-next
 next.js를 활용한 esg 웹 서비스
 
 ## 🗂 폴더 구조 (0911)
 ```plain
-**esg-frontend-next**
+ESG-FRONTEND-NEXT
 ├── .next
 ├── components
 ├── node_modules
