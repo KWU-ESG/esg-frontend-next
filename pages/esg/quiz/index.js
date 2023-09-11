@@ -2,6 +2,17 @@ import { useRouter } from "next/router";
 import { useState } from 'react'
 import Header from '../../../components/layouts/Header';
 import Footer from '../../../components/layouts/Footer';
+import {
+    ButtonWrapper,
+    Contents,
+    InputWrapper,
+    Label,
+    Subject,
+    SubmitButton,
+    Title,
+    Error,
+    CustomSubmitButton
+  } from "../../../styles/register-post";
 
 export default function QuizPage(){
     const [num, setNum] = useState(0);    
@@ -48,6 +59,47 @@ export default function QuizPage(){
     return (
         <>
         <Header/>
+        {/* <div style={{ padding: '20px', flexGrow: 1 }}>
+      <InputWrapper>
+          <Title>ESG QUIZ</Title>
+          
+          
+        </InputWrapper>
+
+        <InputWrapper>
+          <Label>제목</Label>
+          <Subject type="text" placeholder="제목을 입력하세요"/>
+          
+       </InputWrapper>
+
+  
+
+     
+      </div> */}
+      {quiz.list.map((l, idx) => {
+            if(num === idx) {
+                return <div style={{ padding: '20px', flexGrow: 1 }}>
+                    
+                    <InputWrapper>
+                    <Title>ESG QUIZ</Title>
+                    </InputWrapper>
+                    <InputWrapper>
+                        <Label>{l.question}{num+1}번 문제</Label>
+                        <Subject type="text" placeholder={l.answer}/>
+                        <ButtonWrapper>
+                            <CustomSubmitButton onClick={onClickBtn}>다음단계로</CustomSubmitButton>
+                        </ButtonWrapper>
+                    </InputWrapper>
+                </div>
+            }
+            else if(num === 6){
+                return <div>
+                    점수는 _점입니다!
+                </div>
+            }
+  
+      })}
+      {/* 
         {quiz.list.map((l, idx) => {
             if(num === idx) {
                 return <div>
@@ -64,6 +116,7 @@ export default function QuizPage(){
             }
   
       })}
+      */}
       <Footer/>
         </>
 
