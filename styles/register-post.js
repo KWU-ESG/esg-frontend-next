@@ -133,7 +133,6 @@ export const SubmitButton = styled.button`
   background-color: rgba(244, 128, 35, 1);
   color: #fff;
   border-radius: 15px;
-    
 `;
 
 export const CustomSubmitButton = styled(SubmitButton)`
