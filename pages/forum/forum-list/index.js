@@ -16,6 +16,7 @@ import {
   TagPath,
   A
 } from "../../../styles/sidebar-style";
+import * as S from "../../../styles/forum-list-style";
 
 export default function BoardList(){
 
@@ -54,28 +55,50 @@ export default function BoardList(){
       // 선언된 _inputData 를 최초 선언한 boardList에 concat으로 추가
       setBoardList(boardList.concat(_inputData))
       console.log("게시글 목록 받아오기 성공")
-      console.log('받아온 boardList 출력 :: ', res.data[1],boardList[1])
+      console.log('받아온 첫번째 boardList 출력 :: ', res.data[0], res.data[1])
     } catch(e){
       console.error(e.message)
     }
   },[])
 
+  const onClickDelete = (event) => {
+    // onClick event에서 넘겨진 id 삭제, 삭제는 되는데 백엔드에서 실질적 삭제x
+    // 정상적이라면 새로고침 하면 삭제 확인 가능
+
+    if (window.confirm('게시글을 삭제하시겠습니까?')) {
+        console.log("삭제할 타겟 확인: ", event.target)
+        axios.delete(`https://koreanjson.com/posts/${event.target.id}`).then((res) => {
+        alert('삭제가 완료되었습니다.');
+        router.push(`/forum/forum-list/`);
+      });
+    }
+  };
+ 
   // 게시글 id에 따라 동적라우팅 하기 위한 함수
-  const onClickMoveDetail = (id) => {
-    router.push(`/forum/forum-list/${id}`)
-    console.log(`/forum/forum-list/${id}`)
+  const onClickMoveDetail = (event) => {
+    router.push(`/forum/forum-list/${event.target.id}`);
+    console.log(`/forum/forum-list/${event.target.id}`);
   }
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = boardList.slice(indexOfFirstPost, indexOfLastPost);
+  // 백엔드에서 받아오는 날짜 정제 함수
+  const getDate = (date) => {
+    const _date = new Date(date)
+    const yyyy = _date.getFullYear()
+    const mm = _date.getMonth() + 1
+    const dd = _date.getDate()
+    return `${yyyy}-${mm}-${dd}`
+  }
+
+  const indexOfLastPost = currentPage * postsPerPage; // 1*10 = 10
+  const indexOfFirstPost = indexOfLastPost - postsPerPage + 1; // 10 - 10 + 1 = 1
+  const currentPosts = boardList.slice(indexOfFirstPost, indexOfLastPost+1); // 1~10까지 슬라이스
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 
   return (
     <>
     <Header />
-    <Container>
+    {/* <Container>
       <Nav>
         <NavTitle>MENU</NavTitle>
         <A href="#"><IconWrapper>{MenuPath} Questions</IconWrapper></A>
@@ -84,28 +107,42 @@ export default function BoardList(){
         <A href="#"><IconWrapper>{IconPath} G (Governance)</IconWrapper></A>
         <A href="#"><IconWrapper>{TagPath} Tags</IconWrapper></A>
       </Nav>
-    </Container>
-    <Container2> 
-        {currentPosts.map((board,idx) => (
-          <div key={idx}>
-          <div>{idx}</div>
-          <div>{board.title}</div>
-          </div>
+    </Container> */}
+    <S.Wrapper>
+      <S.TableTop />
+      <S.Row>
+        <S.ColumnHeaderBasic>ID</S.ColumnHeaderBasic>
+        <S.ColumnHeaderTitle>제목</S.ColumnHeaderTitle>
+        <S.ColumnHeaderBasic>작성 날짜</S.ColumnHeaderBasic>
+        <S.ColumnHeaderBasic>삭제</S.ColumnHeaderBasic>
+      </S.Row>
+      {currentPosts.map((board) => (
+        <S.Row key={board.id}> 
+            {/* 인라인 요소는 한줄에 출력 */}
+              {/* 변수를 넣는거라 style에 이중 중괄호 사용*/}
+              <S.ColumnBasic>{board.id}</S.ColumnBasic>
+              <S.ColumnTitle id={board.id} onClick={onClickMoveDetail}>{board.title}</S.ColumnTitle>
+              <S.ColumnBasic>{getDate(board.date)}</S.ColumnBasic>
+              <S.ColumnBasic>
+                <button id={board.id} onClick={onClickDelete}>삭제</button>
+              </S.ColumnBasic>
+          </S.Row>
         ))}
+      <S.TableBottom />
+    </S.Wrapper>
+
       
-    {/* 게시글 상세보기 링크 띄우고 이동 */}
+    {/* 게시글 상세보기 링크 그리기 및 이동
     {currentPosts?.map((post)=> (
         <div onClick={() => onClickMoveDetail(post.id)} key={post.id}>
         <h4><Link href={`/forum/forum-list/${post.id}`}><a>{post.title}</a></Link></h4>
       </div>
-    ))}
+    ))} */}
+    총게시글 개수: {boardList.length} 개
 
       <Pagination postsPerPage={postsPerPage} 
       totalPosts={boardList.length} currentPage={currentPage} 
       paginate={paginate}></Pagination>
-    </Container2>
-
-
     <Footer/>
     </>
 
