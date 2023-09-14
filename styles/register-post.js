@@ -133,7 +133,6 @@ export const SubmitButton = styled.button`
   background-color: ${(props) => props.isActive ? 'orange' : 'gray' };
   color: #fff;
   border-radius: 15px;
-    
 `;
 
 export const CustomSubmitButton = styled(SubmitButton)`
