@@ -130,7 +130,7 @@ export const SubmitButton = styled.button`
   font-weight: 900;
   margin-left: 500px;
   margin-right: 12px;
-  background-color: rgba(244, 128, 35, 1);
+  background-color: ${(props) => props.isActive ? 'orange' : 'gray' };
   color: #fff;
   border-radius: 15px;
 `;

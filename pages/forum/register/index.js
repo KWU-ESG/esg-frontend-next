@@ -29,34 +29,48 @@ import { useRouter } from "next/router";
     const [contents, setContents] = useState("");
     // Category state
     const [category, setCategory] = useState(''); 
+    // 작성하기 state
+    const [isActive, setIsActive] = useState(false);
+
 
     // error state
     const [titleError, setTitleError] = useState("");
     const [contentsError, setContentsError] = useState("");
+    // 카테고리 에러 처리 기능 추가해야함
     const [categoryError, setCategoryError] = useState("");
 
     const onChangeTitle = (event) => {
       setTitle(event.target.value);
+      // 입력한 값으로 바로 검사
+      if (event.target.value && contents && category){
+        setIsActive(true)
+      }
       if(event.target.value !== ""){
         setTitleError("")
       }
     };
 
+    // 이벤트 핸들러 함수
+    const onChangeContents = (event) => {
+      setContents(event.target.value);
+      if(title && event.target.value && category){
+        setIsActive(true)
+      }
+      if(event.target.value !== ""){
+        setContentsError("")
+      }
+    };
+
     const onChangeCategory = (event) => {
       setCategory(event.target.value);
+      if(title && event.target.value && contents){
+        setIsActive(true)
+      }
       if(event.target.value !== ""){
         setCategoryError("")
       }
     };
   
-    // 이벤트 핸들러 함수
-    const onChangeContents = (event) => {
-      // 내가 선택한 태그의 값
-      setContents(event.target.value);
-      if(event.target.value !== ""){
-        setContentsError("")
-      }
-    };
 
     const onClickSubmit = async () => {
       // 타이틀이 비었을 때 (없을 때)
@@ -69,17 +83,20 @@ import { useRouter } from "next/router";
       if (title && contents) {
         try {
           const postData = {
-          writer: "임시지은이",
-          password: "1234",
+          id: 10000,
           title: title,
-          content: contents
+          content: contents,
+          createdAt: "2023-02-24T16:17:47.000Z",
+          updatedAt: "2023-02-24T16:17:47.000Z",
+          UserId : 1234
           }
           // category: category 선택한 카테고리
 
+          console.log({isActive})
           console.log("성공시 제목 출력: ",postData.title)
-          await axios.post("http://backend-example.codebootcamp.co.kr/board", postData);
-          alert("게시글이 등록되었습니다.");
-          router.push('/forum/forum-list')
+          await axios.post("https://koreanjson.com/todos", postData);
+          alert("게시글이 성공적으로 등록되었습니다.");
+          //router.push('/forum/forum-list')
           
         }
         catch(error) {
@@ -87,9 +104,10 @@ import { useRouter } from "next/router";
           console.error(error);
         }
 
-
       }
     };
+
+    
 
     return (
       <>
@@ -114,7 +132,7 @@ import { useRouter } from "next/router";
             <option value="G">G</option>
             <option value="기타">기타</option>
           </select>
-          {/* <Error>{titleError}</Error> */}
+          <Error>{categoryError}</Error> 
         </InputWrapper>
 
         <InputWrapper>
@@ -131,7 +149,7 @@ import { useRouter } from "next/router";
 
       <ButtonWrapper>
         <CustomSubmitButton onClick={onClickSubmit}>🖼 이미지 추가</CustomSubmitButton>
-        <SubmitButton onClick={onClickSubmit}>🖋 작성하기</SubmitButton>
+        <SubmitButton onClick={onClickSubmit} isActive={isActive}>🖋 작성하기</SubmitButton>
       </ButtonWrapper>
       </Wrapper>
       <Footer/>

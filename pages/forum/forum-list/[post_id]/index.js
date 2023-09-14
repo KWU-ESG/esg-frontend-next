@@ -8,9 +8,8 @@ import axios from 'axios'
 export default function PostDetail() {
     const router = useRouter()
     const tmp = router.query.post_id
-
-    const id = Object.values(tmp)
-    console.log("라우터 쿼리 아이디 출력: ", Number(id))
+    const id = Number(tmp)
+    console.log("라우터 쿼리 아이디 출력: ", id)
   
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
@@ -34,6 +33,19 @@ export default function PostDetail() {
             console.error(e.message)
         }
     },[])
+
+    const onClickDelete = async (event) => {
+        // onClick event에서 넘겨진 id 삭제, 삭제는 되는데 백엔드에서 실질적 삭제x
+        // 정상적이라면 새로고침 하면 삭제 확인 가능
+        console.log("삭제 이벤트 타켓 출력: " , event.target)
+        if (window.confirm('게시글을 삭제하시겠습니까?')) {
+          await axios.delete(`https://koreanjson.com/posts/${event.target.id}`).then((res) => {
+            alert('삭제가 완료되었습니다.');
+            router.push(`/forum/forum-list`)
+            
+          });
+        }
+      };
  
     return(
         <div>
@@ -57,6 +69,10 @@ export default function PostDetail() {
                 <div>
                     <button type='button' className='editBtn'>edit</button>
                     <button type='button' className='deleteBtn'>delete</button>
+                    <span style={{ margin: "10px" }}>
+                        {/* id={id}를 안넣으면 화면이 안그려진다 왜?? */}
+                     <button id={id} onClick={onClickDelete}>삭제</button>
+                    </span>
                 </div>
             </div>
         </div>
