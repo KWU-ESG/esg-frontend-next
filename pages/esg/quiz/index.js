@@ -5,14 +5,18 @@ import Footer from '../../../components/layouts/Footer';
 import {
   ButtonWrapper,
   InputWrapper,
-  Label
 } from "../../../styles/register-post";
 
 
 import {
   QuizWrapper,
   CustomNextButton,
-  Title
+  Title,
+  Quiz,
+  Label,
+  Option,
+  StyledLabel,
+  StyledInput
 } from "../../../styles/quiz-style";
 
 export default function QuizPage() {
@@ -90,12 +94,16 @@ export default function QuizPage() {
         <QuizWrapper>
         {num <= quiz.list.length - 1 ? (
             <>
-                <Label>{num + 1}번 문제</Label>
-                <div>{quiz.list[num].question}</div>
-                <div>
+                
+                <Quiz>
+                  <Label>Quiz #{num + 1}</Label>
+                  <hr /> 
+                  {quiz.list[num].question}
+                </Quiz>
+                <Option>
                 {quiz.list[num].options.map((option, index) => (
-                  <label key={index}>
-                    <input
+                  <StyledLabel key={index}>
+                    <StyledInput
                       type="radio"
                       name="answer"
                       value={option}
@@ -103,9 +111,9 @@ export default function QuizPage() {
                       onChange={() => setSelectedOption(option)}
                     />
                     {option}
-                  </label>
+                  </StyledLabel>
                 ))}
-              </div>
+              </Option>
               <ButtonWrapper><CustomNextButton onClick={onClickBtn}>다음단계로</CustomNextButton></ButtonWrapper>
               </>
              ) : (
@@ -114,6 +122,7 @@ export default function QuizPage() {
 
         </QuizWrapper>
     </div>
+    <Footer />
     </>
   );
 }
