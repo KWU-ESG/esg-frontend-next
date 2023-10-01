@@ -5,14 +5,18 @@ import Footer from '../../../components/layouts/Footer';
 import {
   ButtonWrapper,
   InputWrapper,
-  Label
 } from "../../../styles/register-post";
 
 
 import {
   QuizWrapper,
   CustomNextButton,
-  Title
+  Title,
+  Label,
+  Quiz,
+  Option,
+  StyledLabel,
+  StyledInput
 } from "../../../styles/quiz-style";
 
 export default function QuizPage() {
@@ -84,36 +88,45 @@ export default function QuizPage() {
   }
   return (
     <>
-    <Header/>
-    <div style={{ padding: '20px', flexGrow: 1 }}>
-        <InputWrapper><Title>ESG QUIZ</Title></InputWrapper>
+      <Header />
+      <div style={{ padding: '20px', flexGrow: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
+        <div style={{ marginRight: '20px' }}>
+          <strong>풀은 문제:</strong> {num}/{quiz.list.length}
+          <div style={{ marginTop: '10px', width: '100px', height: '10px', backgroundColor: 'white', borderRadius: '5px' }}>
+            <div style={{ width: `${(num / quiz.list.length) * 100}%`, height: '100%', backgroundColor: 'rgba(252, 168, 47, 1)', borderRadius: '5px' }}></div>
+          </div>
+        </div>
         <QuizWrapper>
-        {num <= quiz.list.length - 1 ? (
+          <InputWrapper><Title>ESG 퀴즈</Title></InputWrapper>
+          {num <= quiz.list.length - 1 ? (
             <>
-                <Label>{num + 1}번 문제</Label>
-                <div>{quiz.list[num].question}</div>
-                <div>
+              <Label>문제{num + 1}.<Quiz> {quiz.list[num].question}</Quiz></Label>
+              <Option>
                 {quiz.list[num].options.map((option, index) => (
-                  <label key={index}>
-                    <input
-                      type="radio"
-                      name="answer"
-                      value={option}
-                      checked={selectedOption === option}
-                      onChange={() => setSelectedOption(option)}
-                    />
+                  <StyledLabel
+                    key={index}
+                    style={{
+                      backgroundColor: selectedOption === option ? 'orange' : 'white',
+                      color: selectedOption === option ? 'white' : 'black',
+                      cursor: 'pointer',
+                    }}
+                    onClick={() => setSelectedOption(option)}
+                  >
                     {option}
-                  </label>
+                  </StyledLabel>
                 ))}
-              </div>
-              <ButtonWrapper><CustomNextButton onClick={onClickBtn}>다음단계로</CustomNextButton></ButtonWrapper>
-              </>
-             ) : (
-                <div>최종 점수는 {score}점입니다!</div>
-             )}
-
+              </Option>
+              <ButtonWrapper><CustomNextButton onClick={onClickBtn}>다음 퀴즈로 넘어가기</CustomNextButton></ButtonWrapper>
+            </>
+          ) : (
+            <div>최종 점수는 {score}점입니다!</div>
+          )}
         </QuizWrapper>
-    </div>
+        <div style={{ marginLeft: '30px' }}>
+          <strong>타이머 존:</strong> {30} 초
+        </div>
+      </div>
+      <Footer />
     </>
   );
 }

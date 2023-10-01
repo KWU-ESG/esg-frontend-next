@@ -22,22 +22,36 @@ export const SubmitButton = styled.button`
   border-radius: 15px;
 `;
 export const CustomNextButton = styled(SubmitButton)`
-  margin-right: 20px; 
+    width: 250px;
+    height: 52px;
+    border: none;
+    line-height: 18px;
+    letter-spacing: 0.02em;
+    font-size: 19px;
+    font-weight: 900;
+    
+    margin-right: 12px;
+    color: #fff;
+    border-radius: 15px;
+    margin-left: 0px;
+    margin-top: 25px;
+    background-color: rgba(96, 102, 208, 1);
+    box-shadow: 20px 10px 20px 0px rgb(0 0 0 / 25%);
+}
+ 
   margin-left: 0px;
+  margin-top: 25px;
   background-color: rgba(41, 47, 54, 1);
+  box-shadow: 20px 10px 20px 0px rgba(192, 192, 192, 0.35);
 `;
 
-// display: flex;
-//     flex-direction: row;
-//     align-content: center;
-//     justify-content: center;
-//     align-items: center;
-
 export const Title = styled.div`
+  text-shadow: -2px -1px 5px rgba(108, 99, 255, 0.47);
   font-family: Inter;
-  font-size: 27px;
-  font-weight: 400;
-  line-height: 30px;
+  font-size: 35px;
+  color: rgba(96, 102, 208, 1);
+  font-weight: 900;
+  line-height: 60px;
   letter-spacing: 0.02em;
   text-align: left;
   display: flex;
@@ -45,4 +59,70 @@ export const Title = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+`;
+
+
+export const Label = styled.div`
+  margin-bottom:40px;
+  font-size: 25px;
+  font-weight: 610;
+  color: rgba(96, 102, 208, 1);
+  text-shadow: -2px -1px 5px rgba(108, 99, 255, 0.47);
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Quiz = styled.div`
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  font-weight:100;
+  color:black;
+  text-shadow: 0 0 black;
+
+`;
+
+export const Option = styled.div`
+  width: 250px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  gap: 3px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+`;
+
+
+export const StyledLabel = styled.label`
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 25px;
+  width: 240px;
+  border-radius: 30px;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.23);
+
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  border-color: black;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+`;
+
+export const StyledInput = styled.input`
+  font-size: 30px;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
 `;
