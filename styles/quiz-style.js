@@ -126,3 +126,31 @@ export const StyledInput = styled.input`
   width: 20px;
   height: 20px;
 `;
+
+export const TimerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 30px;
+`;
+
+export const MaskContainer = styled.div`
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #eee;
+  margin-bottom: 10px;
+`;
+
+export const Mask = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color:rgba(252, 168, 47, 1);
+  border-radius: 100% 0 0 100% / 50% 0 0 50%;
+  transform-origin: 100% 50%;
+  transition: transform 1s linear;
+`;

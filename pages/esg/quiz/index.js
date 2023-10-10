@@ -1,12 +1,11 @@
 import { useRouter } from "next/router";
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from '../../../components/layouts/Header';
 import Footer from '../../../components/layouts/Footer';
 import {
   ButtonWrapper,
   InputWrapper,
 } from "../../../styles/register-post";
-
 
 import {
   QuizWrapper,
@@ -16,7 +15,10 @@ import {
   Quiz,
   Option,
   StyledLabel,
-  StyledInput
+  StyledInput,
+  TimerContainer,
+  MaskContainer,
+  Mask
 } from "../../../styles/quiz-style";
 
 export default function QuizPage() {
@@ -80,20 +82,48 @@ export default function QuizPage() {
       setUserAnswer([...userAnswer, selectedOption]); // 사용자 답변 추가
       setNum(num + 1); // 다음 문제로 이동
       setSelectedOption(""); // 옵션 초기화 상태로 갱신
+      startTimer(); // 타이머 초기화
     } else {
       // 마지막 문제일 때
       answerCheck(); // 정답 여부 확인 후 점수 갱신
       setUserAnswer([...userAnswer, selectedOption]); // 사용자 답변 추가
+      startTimer();
     }
   }
+
+  const [time, setTime] = useState(30);
+  const [progress, setProgress] = useState({});
+
+  const startTimer = () => {
+    setTime(30); // 타이머 초기화
+  };
+   
+   useEffect(() => {
+    const timerInterval = setInterval(() => {
+      if (time > 0) {
+        setTime(time - 1);
+      } else {
+        // 타이머 중지 
+        clearInterval(timerInterval); 
+      }
+    }, 1000); 
+
+    const countdown = ((30 - time) / 30) * 180;
+    setProgress({
+      transform: `rotate(${countdown}deg)`,
+    });
+    return () => clearInterval(timerInterval);
+  }, [time]); // time 값이 변경될 때마다 실행된다 
+
   return (
     <>
       <Header />
       <div style={{ padding: '20px', flexGrow: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
         <div style={{ marginRight: '20px' }}>
-          <strong>풀은 문제:</strong> {num}/{quiz.list.length}
-          <div style={{ marginTop: '10px', width: '100px', height: '10px', backgroundColor: 'white', borderRadius: '5px' }}>
+          <strong>풀은 문제:</strong> 
+          <div style={{ marginTop: '10px', width: '100px', height: '10px', backgroundColor: 'white', borderRadius: '5px', border: '1px solid lightgray' }}>
             <div style={{ width: `${(num / quiz.list.length) * 100}%`, height: '100%', backgroundColor: 'rgba(252, 168, 47, 1)', borderRadius: '5px' }}></div>
+            {num}/{quiz.list.length}
           </div>
         </div>
         <QuizWrapper>
@@ -123,7 +153,12 @@ export default function QuizPage() {
           )}
         </QuizWrapper>
         <div style={{ marginLeft: '30px' }}>
-          <strong>타이머 존:</strong> {30} 초
+        <TimerContainer>
+          <MaskContainer>
+            <Mask style={progress}></Mask>
+          </MaskContainer>
+          <strong> 남은 시간: {time} 초</strong>
+        </TimerContainer>
         </div>
       </div>
       <Footer />
