@@ -61,9 +61,8 @@ export const Title = styled.div`
   margin-bottom: 20px;
 `;
 
-
 export const Label = styled.div`
-  margin-bottom:40px;
+  margin-bottom: 40px;
   font-size: 25px;
   font-weight: 610;
   color: rgba(96, 102, 208, 1);
@@ -82,10 +81,9 @@ export const Quiz = styled.div`
   align-content: center;
   justify-content: center;
   align-items: center;
-  font-weight:100;
-  color:black;
+  font-weight: 100;
+  color: black;
   text-shadow: 0 0 black;
-
 `;
 
 export const Option = styled.div`
@@ -100,7 +98,6 @@ export const Option = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
 
 export const StyledLabel = styled.label`
   display: flex;
@@ -132,6 +129,7 @@ export const TimerContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-left: 30px;
+  margin-top: 50px;
 `;
 
 export const MaskContainer = styled.div`
@@ -149,7 +147,7 @@ export const Mask = styled.div`
   left: 0;
   width: 50%;
   height: 100%;
-  background-color:rgba(252, 168, 47, 1);
+  background-color: rgba(252, 168, 47, 1);
   border-radius: 100% 0 0 100% / 50% 0 0 50%;
   transform-origin: 100% 50%;
   transition: transform 1s linear;

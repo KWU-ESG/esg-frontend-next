@@ -25,7 +25,7 @@ export default function esgImportance() {
             <A>ESG 개념</A>
           </Link>
           <Link href="/esg/importance">
-            <A href="#">ESG 중요성</A>
+            <A>ESG 중요성</A>
           </Link>
         </Nav>
         <Container2>
