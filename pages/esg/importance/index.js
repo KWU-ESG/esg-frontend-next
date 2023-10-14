@@ -9,12 +9,14 @@ import * as S from "../../../styles/esg-importance-style";
 import Link from "next/link";
 import Header from "../../../components/layouts/Header";
 import Footer from "../../../components/layouts/Footer";
+import Banner from "../../../components/layouts/Banner";
 
 // 줄바뀜 시 가독성을 위해 <S.Br>을 추가함
 export default function esgImportance() {
   return (
     <>
       <Header />
+      <Banner />
       <Container>
         <Nav>
           <NavTitle>MENU</NavTitle>

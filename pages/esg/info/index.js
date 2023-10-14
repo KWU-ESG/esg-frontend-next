@@ -9,6 +9,7 @@ import * as S from "../../../styles/esg-concept-style";
 import Link from "next/link";
 import Header from "../../../components/layouts/Header";
 import Footer from "../../../components/layouts/Footer";
+import Banner from "../../../components/layouts/Banner";
 
 const menuData = [
   { id: "1", name: "ESG 퀴즈", path: "/esg/quiz" },
@@ -20,6 +21,7 @@ export default function esgInfo() {
   return (
     <>
       <Header />
+      <Banner />
       <Container>
         <Nav>
           <NavTitle>MENU</NavTitle>
