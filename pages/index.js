@@ -1,7 +1,26 @@
-import Head from 'next/head'
-import Link from 'next/link'
+import Head from "next/head";
+import Splash from "../components/layouts/Splash";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    // 일정 시간(예: 5초) 후에 Splash 화면을 숨깁니다.
+    const timeout = setTimeout(() => {
+      setShowSplash(false);
+      // 3초 후 "/main" 페이지로 자동으로 이동합니다.
+      setTimeout(() => {
+        router.push("/main");
+      }, 3000);
+    }, 3000);
+
+    // 컴포넌트가 언마운트될 때 clearTimeout을 호출하여 타이머를 정리합니다.
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <>
       <Head>
@@ -10,9 +29,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Link href="/main">
-        <a>Splash 화면 제작 예정</a>
-      </Link>
+      <body>
+        <div>
+          {showSplash && <Splash />}
+          {/* 이 부분에 메인 컨텐츠를 추가할 수 있습니다. */}
+        </div>
+      </body>
     </>
-  )
+  );
 }
