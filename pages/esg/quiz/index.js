@@ -4,6 +4,7 @@ import Header from "../../../components/layouts/Header";
 import Footer from "../../../components/layouts/Footer";
 import { ButtonWrapper, InputWrapper } from "../../../styles/register-post";
 import Link from "next/link";
+import Banner from "../../../components/layouts/Banner";
 import {
   Container,
   Container2,
@@ -123,6 +124,7 @@ export default function QuizPage() {
   return (
     <>
       <Header />
+      <Banner />
       <Container>
         <Nav>
           <NavTitle>MENU</NavTitle>
