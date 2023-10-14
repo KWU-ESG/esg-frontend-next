@@ -35,13 +35,15 @@ const Splash = () => {
   `;
 
   return (
-    <AnimatedDiv>
-      {loading ? (
-        <Loading />
-      ) : (
-        <Image src="/images/logo.png" alt="logo" width={500} height={550} />
-      )}
-    </AnimatedDiv>
+    <>
+      <AnimatedDiv>
+        {loading ? (
+          <Loading />
+        ) : (
+          <Image src="/images/logo.png" alt="logo" width={500} height={550} />
+        )}
+      </AnimatedDiv>
+    </>
   );
 };
 
