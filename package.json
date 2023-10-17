@@ -6,13 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "netlify-deploy": "next build && next export"
   },
   "dependencies": {
     "@apollo/client": "^3.8.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@nestjs/swagger": "^7.1.8",
+    "@netlify/plugin-nextjs": "^4.40.2",
     "@next/font": "^13.4.19",
     "animejs": "^3.2.1",
     "axios": "^1.4.0",
