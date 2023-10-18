@@ -21,7 +21,7 @@
     "gitmoji-cli": "^8.5.0",
     "graphql": "^16.8.1",
     "netlify-cli": "^16.8.0",
-    "next": "13.5.5",
+    "next": "^13.4.19",
     "next-images": "^1.8.5",
     "next-swagger-doc": "^0.4.0",
     "react": "18.2.0",
