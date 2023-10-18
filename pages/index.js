@@ -31,13 +31,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <body>
-        <div>
-          {showSplash && <Splash />}
-          {showLoading && <Loading />}
-          {/* 이 부분에 메인 컨텐츠를 추가할 수 있습니다. */}
-        </div>
-      </body>
+      <div>
+        {showSplash && <Splash />}
+        {showLoading && <Loading />}
+        {/* 이 부분에 메인 컨텐츠를 추가할 수 있습니다. */}
+      </div>
     </>
   );
 }
