@@ -19,10 +19,10 @@ export default function NewsPage() {
       <Container>
         <Nav>
           <NavTitle>MENU</NavTitle>
-          <Link href="/news/my-news">
+          <Link href="/news/my-news" legacyBehavior>
             <A>나의 ESG 뉴스</A>
           </Link>
-          <Link href="/news/total-news">
+          <Link href="/news/total-news" legacyBehavior>
             <A>ESG 뉴스 모아보기</A>
           </Link>
         </Nav>

@@ -128,13 +128,13 @@ export default function QuizPage() {
       <Container>
         <Nav>
           <NavTitle>MENU</NavTitle>
-          <Link href="/esg/quiz">
+          <Link href="/esg/quiz" legacyBehavior>
             <A>ESG 퀴즈</A>
           </Link>
-          <Link href="/esg/info">
+          <Link href="/esg/info" legacyBehavior>
             <A>ESG 개념</A>
           </Link>
-          <Link href="/esg/importance">
+          <Link href="/esg/importance" legacyBehavior>
             <A>ESG 중요성</A>
           </Link>
         </Nav>
