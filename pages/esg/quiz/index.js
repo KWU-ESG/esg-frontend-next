@@ -24,8 +24,13 @@ import {
   TimerContainer,
   MaskContainer,
   Mask,
+  TimerCircle,
+  Barbox,
+  SolvedContainer,
+  TimerWrapper
 } from "../../../styles/quiz-style";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList } from '@fortawesome/free-solid-svg-icons'; 
 export default function QuizPage() {
   const [num, setNum] = useState(0);
   const router = useRouter();
@@ -126,18 +131,27 @@ export default function QuizPage() {
       <Header />
       <Banner />
       <Container>
-        <Nav>
-          <NavTitle>MENU</NavTitle>
-          <Link href="/esg/quiz" legacyBehavior>
-            <A>ESG 퀴즈</A>
-          </Link>
-          <Link href="/esg/info" legacyBehavior>
-            <A>ESG 개념</A>
-          </Link>
-          <Link href="/esg/importance" legacyBehavior>
-            <A>ESG 중요성</A>
-          </Link>
-        </Nav>
+      <Nav>
+        <NavTitle>MENU</NavTitle>
+        <Link href="/esg/quiz" legacyBehavior>
+          <A>
+            <FontAwesomeIcon icon={faList} style={{ color: "#858585", marginRight: '8px' }} />
+            ESG 퀴즈
+          </A>
+        </Link>
+        <Link href="/esg/info" legacyBehavior>
+          <A>
+            <FontAwesomeIcon icon={faList} style={{ color: "#858585", marginRight: '8px' }} />
+            ESG 개념
+          </A>
+        </Link>
+        <Link href="/esg/importance" legacyBehavior>
+          <A>
+            <FontAwesomeIcon icon={faList} style={{ color: "#858585", marginRight: '8px' }} />
+            ESG 중요성
+          </A>
+        </Link>
+      </Nav>
         <Container2>
           <div
             style={{
@@ -149,8 +163,19 @@ export default function QuizPage() {
               justifyContent: "space-around",
             }}
           >
+            <SolvedContainer>
+              {num < quiz.list.length ? ( // 모든 문제를 다 풀지 않았을 때
+                <>
+                  <strong>풀은 문제</strong>
+                  <Barbox>
+                  <TimerCircle progress={(num / quiz.list.length)}></TimerCircle>
+                    {num}/{quiz.list.length}
+                  </Barbox>
+                </>
+              ) : null} {/* 모든 문제를 다 푼 경우에는 숨김 */}
+            </SolvedContainer>
             <QuizWrapper>
-              <InputWrapper>
+            <InputWrapper>
                 <Title>ESG 퀴즈</Title>
               </InputWrapper>
               {num <= quiz.list.length - 1 ? (
@@ -184,38 +209,18 @@ export default function QuizPage() {
                 <div>최종 점수는 {score}점입니다!</div>
               )}
             </QuizWrapper>
-            <div style={{ marginLeft: "30px" }}>
-              <div style={{ marginRight: "20px" }}>
-                <strong>풀은 문제:</strong>
-                <div
-                  style={{
-                    marginTop: "10px",
-                    width: "100px",
-                    height: "10px",
-                    backgroundColor: "white",
-                    borderRadius: "5px",
-                    border: "1px solid lightgray",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: `${(num / quiz.list.length) * 100}%`,
-                      height: "100%",
-                      backgroundColor: "rgba(252, 168, 47, 1)",
-                      borderRadius: "5px",
-                    }}
-                  ></div>
-                  {num}/{quiz.list.length}
-                </div>
-              </div>
-
-              <TimerContainer>
-                <MaskContainer>
-                  <Mask style={progress}></Mask>
-                </MaskContainer>
-                <strong> 남은 시간: {time} 초</strong>
-              </TimerContainer>
-            </div>
+            
+            
+            <TimerWrapper>
+              {num < quiz.list.length ? ( // 모든 문제를 다 풀지 않았을 때
+                <TimerContainer>
+                  <MaskContainer>
+                    <Mask style={progress}></Mask>
+                  </MaskContainer>
+                  <strong> 남은 시간: {time} 초</strong>
+                </TimerContainer>
+              ) : null} {/* 모든 문제를 다 푼 경우에는 숨김 */}
+            </TimerWrapper>
           </div>
         </Container2>
       </Container>
