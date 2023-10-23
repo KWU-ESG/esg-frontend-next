@@ -10,7 +10,8 @@ import Link from "next/link";
 import Header from "../../../components/layouts/Header";
 import Footer from "../../../components/layouts/Footer";
 import Banner from "../../../components/layouts/Banner";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList } from '@fortawesome/free-solid-svg-icons'; 
 const menuData = [
   { id: "1", name: "ESG 퀴즈", path: "/esg/quiz" },
   { id: "2", name: "ESG 퀴즈", path: "/esg/info" },
@@ -26,13 +27,13 @@ export default function esgInfo() {
         <Nav>
           <NavTitle>MENU</NavTitle>
           <Link href="/esg/quiz" legacyBehavior>
-            <A>ESG 퀴즈</A>
+            <A><FontAwesomeIcon icon={faList} style={{ color: "#858585", marginRight: '8px' }} />ESG 퀴즈</A>
           </Link>
           <Link href="/esg/info" legacyBehavior>
-            <A>ESG 개념</A>
+            <A><FontAwesomeIcon icon={faList} style={{ color: "#858585", marginRight: '8px' }} />ESG 개념</A>
           </Link>
           <Link href="/esg/importance" legacyBehavior>
-            <A>ESG 중요성</A>
+            <A><FontAwesomeIcon icon={faList} style={{ color: "#858585", marginRight: '8px' }} />ESG 중요성</A>
           </Link>
         </Nav>
         <Container2>
