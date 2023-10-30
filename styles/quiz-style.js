@@ -134,11 +134,12 @@ export const TimerContainer = styled.div`
 
 export const MaskContainer = styled.div`
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   background-color: #eee;
   margin-bottom: 10px;
+  box-shadow: 1px 1px 7px 2px darkgray;
 `;
 
 export const Mask = styled.div`
@@ -152,3 +153,55 @@ export const Mask = styled.div`
   transform-origin: 100% 50%;
   transition: transform 1s linear;
 `;
+
+export const QuizContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const SolvedQuestions = styled.div`
+  width: 20%;
+  padding: 20px;
+`;
+
+export const QuizArea = styled.div`
+  width: 60%;
+  padding: 20px;
+`;
+
+export const TimerArea = styled.div`
+  width: 20%;
+  padding: 20px;
+`;
+
+
+
+export const SolvedContainer = styled.div `
+    marginRight: "20px" 
+`;
+
+
+
+
+export const Barbox = styled.div`
+  margin-top: 10px;
+  width: 150px;
+  height: 15px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  box-shadow: 0px 0px 4px darkgray;
+`;
+
+export const TimerCircle = styled.div`
+  width: ${props => (props.progress * 100)}%;
+  height: 100%;
+  background-color: rgba(252, 168, 47, 1);
+  border-radius: 5px;
+`;
+
+
+export const TimerWrapper = styled.div`
+  margin-left: 30px;
+`;
+

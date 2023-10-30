@@ -61,25 +61,27 @@ export const TagPath = (
 
 export const A = styled.a`
     display: flex;
-    align-items: baseline;
+    align-items: center;
     color: black;
     text-decoration: none;
     width: 310px;
     height: 50px;
     margin: 10px;
     margin-left: 30px;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: center;
+    justify-content: flex-start;
 
     &:hover {
         color: rgba(0, 111, 192, 1);
         background-color: rgba(234, 245, 255, 1);
-        svg {
-            fill: rgba(0, 111, 192, 1); // 아이콘 색상 변경
-        }
+    }
+
+    &:hover svg {
+        fill: rgba(0, 111, 192, 1); // 아이콘 색상 변경
     }
 `;
+
 
 export const IconWrapper = styled.div`
     display: flex;
